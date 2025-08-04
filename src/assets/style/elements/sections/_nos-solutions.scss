@@ -1,0 +1,30 @@
+.solutions {
+    background: linear-gradient(to bottom,
+            $dark 0%,
+            /* Bleu-noir au début */
+            $dark 45%,
+            /* Bleu-noir jusqu'à 45% */
+            #F8F9FA 45%,
+            /* Blanc à partir de 45% */
+            #F8F9FA 100%
+            /* Blanc jusqu'à la fin */
+        );
+
+    .nav-card:hover {
+        border-color: $gold;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width:$medium) {
+        background: linear-gradient(to bottom,
+                $dark 0%,
+                /* Bleu-noir au début */
+                $dark 15%,
+                /* Bleu-noir jusqu'à 45% */
+                #F8F9FA 15%,
+                /* Blanc à partir de 45% */
+                #F8F9FA 100%
+                /* Blanc jusqu'à la fin */
+            );
+    }
+}

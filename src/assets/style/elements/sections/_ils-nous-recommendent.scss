@@ -1,0 +1,23 @@
+.swiper-recommendation {
+    width: 100%;
+    height: max-content;
+
+    .swiper-slide {
+        height: auto;
+    }
+
+    .card-avis {
+        height: 100%;
+        display: grid;
+        justify-content: space-between;
+
+        .author {
+            margin-top: auto;
+        }
+
+        &:hover {
+            cursor: default;
+            border: 1px solid $gold;
+        }
+    }
+}

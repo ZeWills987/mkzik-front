@@ -1,0 +1,30 @@
+.section-contact {
+    height: 519px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: $white;
+
+    .background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .content {
+        width: 55%;
+        height: 100%;
+    }
+
+    .text-link {
+        color: $white;
+    }
+
+    @media screen and (max-width:$medium) {
+        .content {
+            width: 100%;
+        }
+
+        background-position: 55%;
+    }
+}

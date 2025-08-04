@@ -1,0 +1,192 @@
+#sbi_images {
+  padding: 0 !important;
+}
+
+.footer-on {
+  width: 100%;
+}
+
+.card-footer {
+  a {
+    width: max-content;
+    height: max-content;
+    position: relative;
+
+    .blase {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .icon-instagram {
+      font-size: 45px;
+      color: $white;
+      position: inherit;
+    }
+
+    .influenceur_id {
+      margin-top: 80px;
+      color: $white;
+    }
+
+    .avatar_img {
+      width: 100%;
+      max-height: 190px;
+      object-fit: cover;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      img {
+        filter: blur(4px);
+      }
+
+      .blase {
+        display: flex;
+      }
+    }
+  }
+
+  @media screen and (max-width:$medium) {
+    a .avatar_img {
+      max-height: 105px;
+    }
+  }
+}
+
+.footer-site {
+  background-color: $primary;
+  color: white;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .link {
+    width: max-content;
+    height: max-content;
+    color: white;
+    font-size: 14px;
+    font-family: $ff-manrope;
+    border-bottom: solid 1px transparent;
+
+    &:hover {
+      opacity: 1;
+      border-image: linear-gradient(#907159, #C7A17D, #F3C799) 0.7;
+      transition: all 0.1s linear;
+      cursor: pointer;
+    }
+  }
+
+  .brand {
+    height: max-content;
+    color: white;
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width:$medium) {
+      font-size: 80px;
+    }
+  }
+
+  .footer-menu {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      width: max-content;
+      font-size: 14px;
+      font-family: $ff-forma-djr;
+      font-weight: 500;
+      border-bottom: solid 1px $gold;
+      border-image: linear-gradient(#907159, #C7A17D, #F3C799) 1;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+  }
+
+  .btn {
+    width: max-content;
+    height: max-content;
+    font-family: $ff-forma-djr;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .btn-secondary {
+    border: 1px solid $white;
+
+    &:hover {
+      border-image: linear-gradient(#907159, #C7A17D, #F3C799) 1;
+      background: linear-gradient(#907159, #C7A17D, #F3C799);
+    }
+  }
+
+  .btn-secondary-outline:hover {
+    border: 1px solid $white;
+  }
+
+  hr {
+    opacity: 0.3;
+  }
+
+  .media-social .icon {
+    color: $white;
+    font-size: 20px;
+  }
+
+  .nav-footer {
+    .item {
+      .toggle {
+        margin: 0 0 16px 0;
+        width: 100%;
+
+        .section-title-white {
+          margin-bottom: 0;
+          padding-bottom: 4px;
+          border-bottom: 1px solid $gold;
+          font-size: 18px;
+          line-height: 26px;
+          font-weight: 400;
+        }
+
+        .icon.r180 {
+          rotate: -180deg;
+        }
+
+      }
+
+      .sub-nav-item {
+        color: $white;
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+  }
+
+  .sub-footer {
+    .link {
+      font-size: 13px;
+      line-height: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .mobile-buttons {
+    gap: 10px;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,23 @@
+.breadcrumbs {
+  ul {
+    list-style: none;
+  }
+
+  .rank-math-breadcrumb>p {
+    display: flex;
+    gap: 10px;
+  }
+
+  a,
+  span {
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 500;
+    opacity: 0.5;
+
+    &.last {
+      opacity: 1;
+    }
+  }
+
+}

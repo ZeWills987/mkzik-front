@@ -1,0 +1,28 @@
+.card-artist {
+    padding: 15px 20px;
+    border: 1px solid $gray;
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 10px;
+
+    img {
+        border-radius: 50%;
+        width: 100%;
+        height: 70px;
+        object-fit: cover;
+        max-height: 180px;
+    }
+
+
+    a {
+        display: block;
+        width: max-content;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        border: 1px solid $primary;
+    }
+}

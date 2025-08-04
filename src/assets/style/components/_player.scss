@@ -1,0 +1,42 @@
+.player {
+    padding: 10px 20px;
+    height: 80px;
+    background-color: $white;
+    border-top: 1px solid $gray;
+
+    .current-zik {
+        max-width: 200px;
+        height: 100%;
+
+        img {
+            width: 50px;
+            min-width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        h4,
+        p {
+            margin: 0;
+            letter-spacing: 0.75px;
+        }
+
+        h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: $dark;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        p {
+            font-size: 11px;
+            color: $dark;
+            opacity: 0.7;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}

@@ -1,0 +1,71 @@
+html,
+body {
+    font-family: $ff-manrope;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    height: 100vh;
+}
+
+#root {
+    height: 100%;
+}
+
+#root>.flex {
+    height: calc(100% - 80px);
+    overflow: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.main-content {
+    overflow-y: scroll;
+}
+
+html:has(#wpadminbar) {
+    margin-top: 32px !important;
+}
+
+.caret {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.bg-highlight {
+    background-color: $secondary;
+    padding: 0 4px;
+    color: white;
+}
+
+.text-highlight {
+    padding: 0 4px;
+    color: $secondary;
+}
+
+.blur {
+    filter: blur(1px);
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}

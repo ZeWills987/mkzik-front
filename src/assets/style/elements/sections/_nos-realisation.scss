@@ -1,0 +1,38 @@
+.nos-realisation {
+    margin: 70px 0 40px 0;
+
+    +.swiper {
+        width: 100%;
+
+        +.btn {
+            width: max-content;
+            display: none;
+        }
+    }
+
+    @media screen and (max-width:$medium) {
+        margin: 0;
+
+        .btn {
+            display: none;
+        }
+
+        +.swiper {
+            width: 100%;
+            height: max-content;
+            box-sizing: border-box;
+
+            .swiper-wrapper {
+                height: max-content;
+            }
+
+            .swiper-slide {
+                height: auto;
+            }
+
+            +.btn {
+                display: block;
+            }
+        }
+    }
+}

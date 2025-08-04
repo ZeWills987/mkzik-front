@@ -1,0 +1,40 @@
+.badge {
+  display: flex;
+  padding: 10px 14px;
+  width: max-content;
+  height: max-content;
+  font-size: 12px;
+  font-family: $ff-manrope;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 15px;
+
+  &:empty {
+    display: none;
+  }
+}
+
+@each $color, $value in $colors {
+  .badge-#{$color} {
+    background-color: $value;
+    color: $primary;
+  }
+}
+
+// Override badge special
+.badge-light {
+  color: $primary;
+}
+
+.badge-primary {
+  width: max-content;
+  top: 18px;
+  left: 18px;
+  position: absolute;
+  color: $white;
+
+  svg {
+    color: $gold;
+  }
+}
