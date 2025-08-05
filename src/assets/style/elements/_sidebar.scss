@@ -24,6 +24,8 @@
                 display: flex;
                 gap: 10px;
                 color: rgba($secondary, 0.4);
+                border-left: 4px solid transparent;
+
 
                 &:hover {
                     background-color: rgba($secondary, 0.1);
@@ -34,6 +36,7 @@
                 &.active {
                     background-color: rgba($primary, 0.1);
                     color: $primary;
+                    border-left: 4px solid $primary;
                 }
             }
         }

@@ -1,7 +1,8 @@
+import Zik from '../cards/Zik';
+import Artist from '../cards/Artist';
 
 function Home() {
     let ziks = ['', '', '', '', '']
-
 
     return (
         <>
@@ -11,45 +12,21 @@ function Home() {
             <h3 className="section-title mb-20">Récément écoutés</h3>
             <div className="grid grid-cols-5 gap-20 mb-30">
                 {ziks.map((zik) => (
-                    <div className="card-zik">
-                        <img src="" alt="" className="thumbnail mb-20" />
-                        <a href="">
-                            <h4 className="card-title">Neon Light</h4>
-                        </a>
-                        <a href="">
-                            <p className="card-descrition">Luna Eclispe</p>
-                        </a>
-                    </div>
+                    <Zik />
                 ))}
             </div>
 
             <h3 className="section-title mb-20">Album recommandé</h3>
             <div className="grid grid-cols-5 gap-20 mb-30">
                 {ziks.map((zik) => (
-                    <div className="card-zik">
-                        <img src="" alt="" className="thumbnail mb-20" />
-                        <a href="">
-                            <h4 className="card-title">Neon Light</h4>
-                        </a>
-                        <a href="">
-                            <p className="card-descrition">Luna Eclispe</p>
-                        </a>
-                    </div>
+                    <Zik />
                 ))}
             </div>
 
             <h3 className="section-title mb-20">Artistes tendance</h3>
             <div className="grid grid-cols-5 gap-20 mb-30">
                 {ziks.map((zik) => (
-                    <div className="card-artist">
-                        <img src="" alt="" className="thumbnail mb-20" />
-                        <a href="">
-                            <h4 className="card-title">Neon Light</h4>
-                        </a>
-                        <a href="">
-                            <p className="card-descrition">Luna Eclispe</p>
-                        </a>
-                    </div>
+                    <Artist />
                 ))}
             </div>
         </>

@@ -1,0 +1,27 @@
+.filter {
+    margin-bottom: 30px;
+    padding-bottom: 0;
+
+    .menu-items {
+        margin: 0;
+        display: flex;
+        border-bottom: 1px solid $gray;
+
+        .item {
+            margin: 0;
+            padding: 0;
+            display: flex;
+
+            a {
+                padding: 0 15px 10px 15px;
+                color: $secondary;
+                border-bottom: 2px solid transparent;
+
+                &.active {
+                    color: $primary;
+                    border-bottom: 2px solid $primary;
+                }
+            }
+        }
+    }
+}

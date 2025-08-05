@@ -12,7 +12,9 @@ function Player() {
                 <div className="curent-time">
 
                 </div>
-
+                <audio controls autoPlay>
+                    <source src="sons.mp3" type="audio/mp3"></source>
+                </audio>
             </div>
         </>
     );

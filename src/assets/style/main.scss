@@ -32,8 +32,6 @@
 @import "elements/_main-content";
 
 
-
-
 // COMPONENTS
 @import "components/_button";
 @import "components/_icon";
@@ -56,6 +54,8 @@
 @import "cards/genre";
 
 // pages
+@import "pages/_library";
+
 
 /* - - - -    Z-index Element Priority    - - - -  */
 // header  : 999
