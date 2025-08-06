@@ -32,14 +32,14 @@ function Sidebar() {
                     </NavLink >
                 </li>
                 <li className="item">
-                    <NavLink to='/playlist' >
+                    <NavLink to='/favoris' >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M21 15V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M21 18.5C21 19.8807 19.8807 21 18.5 21C17.1193 21 16 19.8807 16 18.5C16 17.1193 17.1193 16 18.5 16C19.8807 16 21 17.1193 21 18.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M9 18.5C9 19.8807 7.88071 21 6.5 21C5.11929 21 4 19.8807 4 18.5C4 17.1193 5.11929 16 6.5 16C7.88071 16 9 17.1193 9 18.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M9 18.5V3L21 6V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                        Playlist
+                        Favoris
                     </NavLink >
                 </li>
             </ul>

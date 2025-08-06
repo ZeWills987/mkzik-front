@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <>
-            <h2 className="page-title mb-10">Bonjour</h2>
+            <h2 className="page-title mb-10">Kaoha Nui</h2>
             <p className="subtitle mb-40">Découvrez votre musique préférée</p>
 
             <h3 className="section-title mb-20">Récément écoutés</h3>

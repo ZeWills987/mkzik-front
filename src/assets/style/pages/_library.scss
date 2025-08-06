@@ -14,7 +14,7 @@
 
             a {
                 padding: 0 15px 10px 15px;
-                color: $secondary;
+                color: rgba($secondary, 0.7);
                 border-bottom: 2px solid transparent;
 
                 &.active {

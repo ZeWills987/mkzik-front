@@ -4,7 +4,7 @@ function Filter() {
     return (
         <>
             <div className="filter">
-                <ul className='menu-items flex gap-20'>
+                <ul className='menu-items flex'>
                     <li className='item'>
                         <NavLink to='/library' className={({ isActive }) => (isActive ? " active" : "")} end>
                             Tout
@@ -12,7 +12,7 @@ function Filter() {
                     </li>
                     <li className='item'>
                         <NavLink to='/library/favoris' className={({ isActive }) => (isActive ? " active" : "")} end>
-                            Préférances
+                            Favoris
                         </NavLink >
                     </li>
                     <li className='item'>

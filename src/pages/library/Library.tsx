@@ -4,7 +4,6 @@ import Filter from '../../components/Filter';
 import { Outlet } from "react-router-dom";
 
 function Library() {
-    let ziks = ['', '', '', '', '']
     return (
         <>
             <h2 className="page-title mb-10">Ma bibliothèque</h2>

@@ -1,12 +1,31 @@
 .player {
     padding: 10px 20px;
     height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $white;
     border-top: 1px solid $gray;
 
+    p {
+        margin: 0;
+    }
+
+    button {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     .current-zik {
-        max-width: 200px;
+        width: 300px;
         height: 100%;
+        display: flex;
+        align-items: center;
 
         img {
             width: 50px;
@@ -37,6 +56,116 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+    }
+
+    .control-player {
+        max-width: 700px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+
+        .control {
+            display: flex;
+            gap: 10px;
+        }
+    }
+
+    .duration {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .current-time,
+        .end-time {
+            width: 40px;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .range-time {
+            width: 550px;
+            height: 4px;
+            background-color: $gray;
+            border-radius: 10px;
+            position: relative;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .current {
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 10px;
+                background-color: $primary;
+            }
+        }
+    }
+
+    .more-controls {
+        display: flex;
+        gap: 10px;
+
+        button.active svg {
+            color: $primary;
+
+            path {
+                fill: $primary;
+            }
+        }
+    }
+
+    .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+
+        .mute {}
+
+        .volume-range {
+            width: 80px;
+            height: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .current,
+            .full {
+                height: 4px;
+                position: absolute;
+                bottom: 50%;
+                border-radius: 10px;
+                top: 0;
+                left: 0;
+            }
+
+            .current {
+                width: 10%;
+                background-color: $primary;
+                z-index: 2;
+            }
+
+            .full {
+                width: 100%;
+                background-color: $gray;
+                z-index: 1;
+            }
+        }
+
+        &:hover {
+            .range-volume-control {
+                display: flex;
+            }
         }
     }
 }
