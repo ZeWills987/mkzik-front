@@ -6,9 +6,8 @@
 
     img {
         width: 100%;
-        height: 180px;
+        height: 150px;
         object-fit: cover;
-        max-height: 180px;
     }
 
     a {
@@ -20,5 +19,23 @@
     &:hover {
         transform: translateY(-4px);
         border: 1px solid $primary;
+    }
+
+    @media screen and (min-width:$large) {
+        img {
+            height: 190px;
+        }
+    }
+
+    @media screen and (min-width:$xlarge) {
+        img {
+            height: 160px;
+        }
+    }
+
+    @media screen and (min-width:$xxlarge) {
+        img {
+            height: 160px;
+        }
     }
 }

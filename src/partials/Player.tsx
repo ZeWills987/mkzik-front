@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import ReactHowler from 'react-howler';
 
 import audioFile1 from '../assets/audio/YOU • PNM [ REMIX ] 🎧.mp3';
 import audioFile2 from '../assets/audio/ALWAYS BEEN YOU.mp3';
 import audioFile3 from '../assets/audio/PNM - IDFC.mp3';
+import audioFile4 from '../assets/audio/J trace Mon Badada - (HMK REMIX) 2024.mp3';
+import audioFile5 from '../assets/audio/Lets Go.mp3';
+import audioFile6 from '../assets/audio/The Weeknd – Timeless with Playboi Carti (Official Music Video).mp3';
+import audioFile7 from '../assets/audio/Un dernier sourire.mp3';
 
 function Player() {
 
@@ -34,6 +39,23 @@ function Player() {
             author: "PNM",
             src: audioFile3
         }
+        , {
+            title: "J trace Mon Badada - (HMK REMIX) 2024.mp3",
+            author: "HMK",
+            src: audioFile4
+        }, {
+            title: "Lets Go",
+            author: "Inconnu",
+            src: audioFile5
+        }, {
+            title: "The Weeknd – Timeless with Playboi Carti (Official Music Video)",
+            author: "The Weekend",
+            src: audioFile6
+        }, {
+            title: "Un dernier sourire",
+            author: "Inconnue",
+            src: audioFile7
+        }
     ];
 
     const volumeFullRef = useRef<HTMLDivElement>(null);
@@ -45,8 +67,8 @@ function Player() {
     const audioTitle = listZiks[currentTrackIndex].title;
     const audioAuhtor = listZiks[currentTrackIndex].author;
 
-    // Main Functions
 
+    // Play Pause 
     const handleStarStop = () => {
         setIsRunning(prev => {
             if (prev) {
@@ -58,6 +80,7 @@ function Player() {
         });
     };
 
+    // Next zik
     const handleNext = () => {
         const nextIndex = (currentTrackIndex + 1) % listZiks.length;
         setCurrentTrackIndex(nextIndex);
@@ -68,6 +91,7 @@ function Player() {
         }
     };
 
+    // Previous zik
     const handlePrevious = () => {
         const prevIndex = currentTrackIndex === 0 ? listZiks.length - 1 : currentTrackIndex - 1;
         setCurrentTrackIndex(prevIndex);
@@ -78,8 +102,7 @@ function Player() {
         }
     };
 
-    // 
-
+    // Progress bar 
     const updateProgress = () => {
         const percent = audioRef.current.currentTime / audioRef.current.duration;
         setFillPercent(percent);
@@ -104,29 +127,33 @@ function Player() {
         setIsVolumeDragging(false);
     };
 
+    // Zik progress
     useEffect(() => {
         audioRef.current.addEventListener('timeupdate', updateProgress);
-        audioRef.current.addEventListener('ended', () => {
+        const handleEnded = () => {
             if (isRepeat && isRunning) {
                 audioRef.current.currentTime = 0;
                 audioRef.current.play();
-            }
-            else {
+            } else {
+                // Calcul du prochain index de piste
                 const nextIndex = (currentTrackIndex + 1) % listZiks.length;
                 setCurrentTrackIndex(nextIndex);
+                // Important : changer le src AVEC le nextIndex
                 audioRef.current.src = listZiks[nextIndex].src;
                 audioRef.current.load();
-                audioRef.current.play();
+                if (isRunning) {
+                    audioRef.current.play();
+                }
             }
-            // else {
-            //     setIsRunning(false);
-            // }
-        });
+        };
+
+        audioRef.current.addEventListener('ended', handleEnded);
 
         return () => {
             audioRef.current.removeEventListener('timeupdate', updateProgress);
+            audioRef.current.removeEventListener('ended', handleEnded);
         };
-    }, [isRepeat]);
+    }, [isRepeat, isRunning, currentTrackIndex, listZiks]);
 
     useEffect(() => {
         if (isVolumeDragging) {
@@ -154,7 +181,6 @@ function Player() {
             return '0:00';
         }
     };
-
 
     const handleMouseDown = () => {
         setIsDragging(true);
@@ -210,8 +236,11 @@ function Player() {
         };
     }, [isDragging]);
 
+
+
     return (
-        <>
+        <>            {/* ReactHowler - Composant audio invisible mais contrôlable */}
+
             <div className="player">
                 <div className="current-zik flex align-items-center gap-10">
                     <img src="" alt="" />

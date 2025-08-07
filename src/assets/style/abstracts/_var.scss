@@ -10,12 +10,15 @@ $breakpoints: (
   // petit écran de bureau
   xl: 1340px,
   // trés grand écran de bureau
+  xxl: 1440px,
   ) !default;
 
 $small: map-get($breakpoints, sm) !default;
 $medium: map-get($breakpoints, md) !default;
 $large: map-get($breakpoints, lg) !default;
 $xlarge: map-get($breakpoints, xl) !default;
+$xxlarge: map-get($breakpoints, xxl) !default;
+
 
 // ---------------    COLORS     ---------------
 $gray-1 : rgba(94, 82, 64, 0.2

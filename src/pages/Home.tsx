@@ -10,7 +10,10 @@ function Home() {
             <p className="subtitle mb-40">Découvrez votre musique préférée</p>
 
             <h3 className="section-title mb-20">Récément écoutés</h3>
-            <div className="grid grid-cols-5 gap-20 mb-30">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 gap-20 mb-30">
+                {ziks.map((zik) => (
+                    <Zik />
+                ))}
                 {ziks.map((zik) => (
                     <Zik />
                 ))}
