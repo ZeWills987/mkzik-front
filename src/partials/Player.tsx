@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ReactHowler from 'react-howler';
+import arrayShuffle from 'array-shuffle';
 
 import audioFile1 from '../assets/audio/YOU • PNM [ REMIX ] 🎧.mp3';
 import audioFile2 from '../assets/audio/ALWAYS BEEN YOU.mp3';
@@ -13,9 +14,9 @@ import image from "../assets/image/image.jpg";
 import { usePlayerLogic } from './UsePlayerLogic';
 
 function Player() {
-
+    const [isRandom, setIsRandom] = useState(false);
     // Ziks lists for test
-    const listZiks = [
+    let listZiksOriginal = [
         {
             title: "YOU • PNM [ REMIX ] 🎧",
             author: "PNM",
@@ -50,6 +51,8 @@ function Player() {
         }
     ];
 
+    const [listZiks, setListZiks] = useState(listZiksOriginal);
+
     // Player
     const playerRef = useRef<any>(null);
 
@@ -68,12 +71,27 @@ function Player() {
         handleVolumeClick, handleVolumeMouseDown, formatTime
     } = usePlayerLogic(listZiks, playerRef);
 
-
     // Audio data
     const volumeFullRef = useRef<HTMLDivElement>(null);
 
     const audioTitle = listZiks[currentTrackIndex].title;
     const audioAuhtor = listZiks[currentTrackIndex].author;
+
+    const handleRandom = () => {
+        if (isRandom) {
+            setIsRandom(false);
+            setListZiks(listZiksOriginal);
+        } else {
+            setIsRandom(true);
+            const shuffled = arrayShuffle(listZiksOriginal);
+            setListZiks(shuffled);
+        }
+    };
+
+    useEffect(() => {
+        console.log("Liste des pistes : ");
+        listZiks.forEach(zik => console.log(zik.title));
+    }, [listZiks]);
 
     return (
         <>
@@ -142,7 +160,7 @@ function Player() {
                             </g>
                         </svg>
                     </button>
-                    <button className="random">
+                    <button className={isRandom ? "active " + "random" : "random"} onClick={handleRandom}>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20" x="0" y="0" viewBox="0 0 128 128">
                             <g>
                                 <path d="M31.648 40H12a4 4 0 0 1 0-8h19.648a28.058 28.058 0 0 1 22.785 11.725l4.651 6.511-4.916 6.882-6.245-8.743A20.038 20.038 0 0 0 31.648 40zm87.18 49.172-16-16c-1.563-1.563-4.094-1.563-5.656 0s-1.563 4.094 0 5.656L106.344 88h-9.992a20.04 20.04 0 0 1-16.275-8.375l-6.245-8.743-4.916 6.882 4.651 6.511A28.056 28.056 0 0 0 96.352 96h9.992l-9.172 9.172a3.997 3.997 0 0 0 0 5.656c.781.781 1.805 1.172 2.828 1.172s2.047-.391 2.828-1.172l16-16a3.997 3.997 0 0 0 0-5.656zm0-56-16-16c-1.563-1.563-4.094-1.563-5.656 0s-1.563 4.094 0 5.656L106.344 32h-9.992a28.06 28.06 0 0 0-22.787 11.727L47.926 79.623A20.044 20.044 0 0 1 31.648 88H12a4 4 0 0 0 0 8h19.648a28.06 28.06 0 0 0 22.787-11.727l25.639-35.896A20.044 20.044 0 0 1 96.352 40h9.992l-9.172 9.172a3.997 3.997 0 0 0 0 5.656C97.953 55.609 98.977 56 100 56s2.047-.391 2.828-1.172l16-16a3.997 3.997 0 0 0 0-5.656z" fill="#000000" opacity="1" data-original="#000000"></path>

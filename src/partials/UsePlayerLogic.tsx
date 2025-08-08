@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 
+
 export function usePlayerLogic(listZiks: any[], playerRef: RefObject<any>) {
     const [isRunning, setIsRunning] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
+
     const [isDragging, setIsDragging] = useState(false);
     const [isVolumeDragging, setIsVolumeDragging] = useState(false);
     const [volumePercent, setVolumePercent] = useState(1);
@@ -15,7 +17,8 @@ export function usePlayerLogic(listZiks: any[], playerRef: RefObject<any>) {
     const fullRef = useRef<HTMLDivElement>(null);
     const rectRef = useRef<DOMRect | null>(null);
 
-    /** Calculate percentage with event + rect utilities */
+
+    /** Calculate percentage with mouse position + rect utilities */
     const calculatePercentFromEvent = (
         event: MouseEvent | React.MouseEvent<HTMLDivElement>,
         rect: DOMRect
@@ -31,6 +34,7 @@ export function usePlayerLogic(listZiks: any[], playerRef: RefObject<any>) {
     const handlePrevious = () =>
         setCurrentTrackIndex(p => (p === 0 ? listZiks.length - 1 : p - 1));
 
+
     /** Audio load */
     const handleOnLoad = () => {
         if (playerRef.current?.duration) {
@@ -40,9 +44,11 @@ export function usePlayerLogic(listZiks: any[], playerRef: RefObject<any>) {
 
     /** When zik is end */
     const handleOnEnd = () => {
-        if (isRepeat && playerRef.current) {
-            playerRef.current.seek(0);
-            setIsRunning(true);
+        if (isRepeat) {
+            if (playerRef.current) {
+                playerRef.current.seek(0);
+                setIsRunning(true);
+            }
         } else {
             handleNext();
         }
