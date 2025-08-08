@@ -7,8 +7,8 @@ function FavorisSection() {
         <>
             <h3 className="section-title mb-20">Artistes visités</h3>
             <div className="grid grid-cols-5 gap-20 mb-30">
-                {artists.map((artist) => (
-                    <Artist />
+                {artists.map((artist, index) => (
+                    <Artist key={artist || index} />
                 ))}
             </div>
         </>

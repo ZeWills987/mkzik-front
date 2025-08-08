@@ -9,6 +9,8 @@ import audioFile5 from '../assets/audio/Lets Go.mp3';
 import audioFile6 from '../assets/audio/The Weeknd – Timeless with Playboi Carti (Official Music Video).mp3';
 import audioFile7 from '../assets/audio/Un dernier sourire.mp3';
 
+import image from "../assets/image/image.jpg";
+
 function Player() {
 
     const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -24,7 +26,7 @@ function Player() {
     // Player 
     const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
 
-    // Liste temporaire pour les tests
+    // Ziks lists for test
     const listZiks = [
         {
             title: "YOU • PNM [ REMIX ] 🎧",
@@ -60,6 +62,7 @@ function Player() {
         }
     ];
 
+    // Audio data
     const volumeFullRef = useRef<HTMLDivElement>(null);
     const fullRef = useRef<HTMLDivElement>(null);
     const audioRef = useRef<HTMLAudioElement>(
@@ -67,12 +70,9 @@ function Player() {
     );
 
     const playerRef = useRef<any>(null);
-
     const audioTitle = listZiks[currentTrackIndex].title;
     const audioAuhtor = listZiks[currentTrackIndex].author;
 
-
-    // Play Pause 
     // Play/Pause
     const handleStarStop = () => {
         setIsRunning(prev => !prev);
@@ -90,12 +90,14 @@ function Player() {
         setCurrentTrackIndex(prevIndex);
     };
 
+    // 
     const handleOnLoad = () => {
         if (playerRef.current && playerRef.current.duration) {
             setDuration(playerRef.current.duration());
         }
     };
 
+    // Event when zik end
     const handleOnEnd = () => {
         if (isRepeat) {
             // Répéter la piste courante
@@ -117,7 +119,7 @@ function Player() {
         setCurrentTime(seek);
     };
 
-
+    //  Progress bar Event Click
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (fullRef.current && playerRef.current && playerRef.current.duration) {
             const rect = fullRef.current.getBoundingClientRect();
@@ -129,7 +131,7 @@ function Player() {
         }
     };
 
-    // Zik progress
+    // Zik progress bar upadte in live
     useEffect(() => {
         if (!isRunning) return;
 
@@ -247,7 +249,7 @@ function Player() {
             />
             <div className="player">
                 <div className="current-zik flex align-items-center gap-10">
-                    <img src="" alt="" />
+                    <img src={image} alt="" />
                     <div className="flex flex-col gap-5">
                         <a href=""><h4 className="title">{audioTitle}</h4></a>
                         <a href=""><p>{audioAuhtor}</p></a>
@@ -257,8 +259,8 @@ function Player() {
                     <div className="control">
                         <button className="previous" onClick={handlePrevious}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M19 20L9 12L19 4V20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M5 19V5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M19 20L9 12L19 4V20Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                <path d="M5 19V5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </button>
                         <button className="play-pause" onClick={handleStarStop}>
@@ -272,15 +274,15 @@ function Player() {
                                 :
                                 <div className="play">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" id="play-icon">
-                                        <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                                     </svg>
                                 </div>
                             }
                         </button>
                         <button className="next" onClick={handleNext}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 4L15 12L5 20V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M19 5V19" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M5 4L15 12L5 20V4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                <path d="M19 5V19" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </button>
                     </div>
@@ -311,8 +313,8 @@ function Player() {
                 <div className="volume-control">
                     <button className="mute">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path d="M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                         </svg>
                     </button>
                     <div className="padding-vol">

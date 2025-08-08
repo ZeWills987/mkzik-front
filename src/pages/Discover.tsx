@@ -1,4 +1,5 @@
-import CardZIk from "../cards/Zik";
+import Zik from "../cards/Zik";
+import image from "../assets/image/image.jpg";
 
 function Discover() {
     let genres = ['', '', '', ''];
@@ -11,9 +12,8 @@ function Discover() {
 
             <h3 className="section-title mb-20">Genres populaires</h3>
             <div className="grid grid-cols-5 gap-20 mb-40">
-                {genres.map((genre) => (
-                    <a className="card-genre">
-                        <img src="" alt="" className="thumbnail mb-20" />
+                {genres.map((genre, index) => (
+                    <a key={genre || index} className="card-genre">
                         <h3 className="section-title">Electronic</h3>
                     </a>
                 ))}
@@ -21,8 +21,8 @@ function Discover() {
 
             <h3 className="section-title mb-20">Nouveautés</h3>
             <div className="grid grid-cols-5 gap-20 mb-30">
-                {ziks.map((zik) => (
-                    <CardZIk />
+                {ziks.map((zik, index) => (
+                    <Zik key={zik || index} />
                 ))}
             </div>
         </div>
