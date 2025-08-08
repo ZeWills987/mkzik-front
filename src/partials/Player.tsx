@@ -10,21 +10,9 @@ import audioFile6 from '../assets/audio/The Weeknd – Timeless with Playboi Car
 import audioFile7 from '../assets/audio/Un dernier sourire.mp3';
 
 import image from "../assets/image/image.jpg";
+import { usePlayerLogic } from './UsePlayerLogic';
 
 function Player() {
-
-    const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [isRepeat, setIsRepeat] = useState<boolean>(false);
-    const [isDragging, setIsDragging] = useState<boolean>(false);
-    const [isVolumeDragging, setIsVolumeDragging] = useState<boolean>(false);
-    const [isVolumeVisible, setIsVolumeVisible] = useState<boolean>(false);
-    const [volumePercent, setVolumePercent] = useState<number>(1);
-    const [fillPercent, setFillPercent] = useState<number>(0);
-    const [duration, setDuration] = useState<number>(0);
-    const [currentTime, setCurrentTime] = useState<number>(0);
-
-    // Player 
-    const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
 
     // Ziks lists for test
     const listZiks = [
@@ -62,181 +50,33 @@ function Player() {
         }
     ];
 
+    // Player
+    const playerRef = useRef<any>(null);
+
+    // States vars
+    const {
+        isRepeat,
+        isRunning,
+        currentTrackIndex,
+        volumePercent,
+        duration, currentTime,
+        fillPercent, fullRef,
+        handleStarStop,
+        handleNext,
+        handlePrevious, handleOnLoad, handleOnEnd,
+        handleClick, handleMouseDown, handleRepeatClick,
+        handleVolumeClick, handleVolumeMouseDown, formatTime
+    } = usePlayerLogic(listZiks, playerRef);
+
+
     // Audio data
     const volumeFullRef = useRef<HTMLDivElement>(null);
-    const fullRef = useRef<HTMLDivElement>(null);
-    const audioRef = useRef<HTMLAudioElement>(
-        new Audio(listZiks[currentTrackIndex].src)
-    );
 
-    const playerRef = useRef<any>(null);
     const audioTitle = listZiks[currentTrackIndex].title;
     const audioAuhtor = listZiks[currentTrackIndex].author;
 
-    // Play/Pause
-    const handleStarStop = () => {
-        setIsRunning(prev => !prev);
-    };
-
-    // Next zik
-    const handleNext = () => {
-        const nextIndex = (currentTrackIndex + 1) % listZiks.length;
-        setCurrentTrackIndex(nextIndex);
-    };
-
-    // Previous zik
-    const handlePrevious = () => {
-        const prevIndex = currentTrackIndex === 0 ? listZiks.length - 1 : currentTrackIndex - 1;
-        setCurrentTrackIndex(prevIndex);
-    };
-
-    // 
-    const handleOnLoad = () => {
-        if (playerRef.current && playerRef.current.duration) {
-            setDuration(playerRef.current.duration());
-        }
-    };
-
-    // Event when zik end
-    const handleOnEnd = () => {
-        if (isRepeat) {
-            // Répéter la piste courante
-            if (playerRef.current) {
-                playerRef.current.seek(0);
-                setIsRunning(true);
-            }
-        } else {
-            // Passer à la piste suivante automatiquement
-            handleNext();
-        }
-    };
-
-    // Progress bar update
-    const updateProgress = () => {
-        const seek = playerRef.current.seek() || 0;
-        const duration = playerRef.current.duration() || 0;
-        setFillPercent(seek / duration);
-        setCurrentTime(seek);
-    };
-
-    //  Progress bar Event Click
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (fullRef.current && playerRef.current && playerRef.current.duration) {
-            const rect = fullRef.current.getBoundingClientRect();
-            const offsetX = event.clientX - rect.left;
-            const percent = Math.min(Math.max(offsetX / rect.width, 0), 1);
-            const newTime = percent * playerRef.current.duration();
-            playerRef.current.seek(newTime);
-            updateProgress();
-        }
-    };
-
-    // Zik progress bar upadte in live
-    useEffect(() => {
-        if (!isRunning) return;
-
-        const interval = setInterval(() => {
-            updateProgress()
-        }, 250);
-
-        return () => clearInterval(interval);
-    }, [isRunning]);
-
-
-    // Volume
-    useEffect(() => {
-        if (isVolumeDragging) {
-            window.addEventListener('mousemove', handleVolumeMove);
-            window.addEventListener('mouseup', handleVolumeMouseUp);
-        } else {
-            window.removeEventListener('mousemove', handleVolumeMove);
-            window.removeEventListener('mouseup', handleVolumeMouseUp);
-        }
-        return () => {
-            window.removeEventListener('mousemove', handleVolumeMove);
-            window.removeEventListener('mouseup', handleVolumeMouseUp);
-        };
-    }, [isVolumeDragging]);
-
-    // Formatage
-    const formatTime = (timeInSeconds: any) => {
-        try {
-            if (typeof timeInSeconds !== 'number' || isNaN(timeInSeconds) || !isFinite(timeInSeconds)) {
-                throw new Error('Invalid time');
-            }
-            const minutes = Math.floor(timeInSeconds / 60);
-            const seconds = Math.floor(timeInSeconds % 60);
-            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        } catch (error) {
-            return '0:00';
-        }
-    };
-
-    const handleMouseDown = () => {
-        setIsDragging(true);
-    };
-
-    const handleMouseMove = (event: MouseEvent) => {
-        if (isDragging && fullRef.current && playerRef.current) {
-            const rect = fullRef.current.getBoundingClientRect();
-            const offsetX = event.clientX - rect.left;
-            const percent = Math.min(Math.max(offsetX / rect.width, 0), 1);
-            const newTime = percent * playerRef.current.duration();
-            playerRef.current.seek(newTime);
-            updateProgress();
-        }
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
-    const handleRepeatClick = () => {
-        setIsRepeat(prev => !prev);
-    };
-
-    const handleVolumeClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        const fullVolumeRef = event.currentTarget.getBoundingClientRect();
-        const offsetX = event.clientX - fullVolumeRef.left;
-        const percent = Math.min(Math.max(offsetX / fullVolumeRef.width, 0), 1);
-        setVolumePercent(percent);
-        audioRef.current.volume = percent;
-    };
-
-    // const handleVolumeIconClick = () => {
-    //     setIsVolumeVisible(prev => !prev);
-    // };
-
-    const handleVolumeMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-        setIsVolumeDragging(true);
-        handleVolumeMove(event);
-    };
-
-    const handleVolumeMove = (event: MouseEvent | React.MouseEvent<HTMLDivElement>) => {
-        if (isVolumeDragging && volumeFullRef.current) {
-            const rect = volumeFullRef.current.getBoundingClientRect();
-            const offsetX = event.clientX - rect.left;
-            const percent = Math.min(Math.max(offsetX / rect.width, 0), 1);
-            setVolumePercent(percent);
-            playerRef.current.volume = percent;
-        }
-    };
-
-    const handleVolumeMouseUp = () => {
-        setIsVolumeDragging(false);
-    };
-
-    useEffect(() => {
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [isDragging]);
-
     return (
-        <>            {/* ReactHowler - Composant audio invisible mais contrôlable */}
+        <>
             <ReactHowler
                 src={listZiks[currentTrackIndex].src}
                 playing={isRunning}
@@ -244,7 +84,7 @@ function Player() {
                 onLoad={handleOnLoad}
                 html5={true}
                 volume={volumePercent}
-                loop={false} // On gère la répétition manuellement
+                loop={false}
                 ref={playerRef}
             />
             <div className="player">
